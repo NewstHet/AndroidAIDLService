@@ -62,13 +62,10 @@ public class MySimpService extends Service {
     public IBinder onBind(Intent intent) {
         Log.d("Connectivity" , "onBind called");
 
-        if(ISimp.class.getName().equals(intent.getAction())) {
-            return new SimpServiceImp();
-        }
-
-        return null;
-
-    }
+       // Avoid returning new each time. (create the object elsewhere) .
+       return new SimpServiceImp();
+        
+      }
 
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
